@@ -155,7 +155,41 @@ select{width:100%;padding:9px 10px;border:1px solid var(--line2);border-radius:v
   .stat:nth-child(3n+1){border-left:0}
   #stage.dual{grid-template-columns:1fr}
 }
-@media(max-width:560px){.stats{grid-template-columns:repeat(2,1fr)}.stat:nth-child(3n+1){border-left:1px solid var(--line)}.stat:nth-child(2n+1){border-left:0}}
+@media(max-width:560px){
+  .wrap{padding:16px 12px 34px}
+  .masthead{gap:14px;padding-bottom:15px;margin-bottom:16px}
+  .kicker{font-size:10px;letter-spacing:.12em;margin-bottom:10px}
+  .masthead h1{font-size:30px;line-height:1.18}
+  .dek{font-size:14px;line-height:1.65;margin-top:11px}
+  .mast-meta{width:100%;gap:7px 16px}
+  .mm-row{flex:1 1 145px;font-size:11px}
+  .layoutgrid{gap:14px}
+  .side{padding:15px 13px}
+  .side h3{margin-top:16px;padding-top:13px}
+  .seg button{min-height:42px;font-size:12px;padding:8px 4px}
+  .btn{min-height:44px}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .stat{padding:13px 12px}
+  .stat:nth-child(3n+1){border-left:1px solid var(--line)}
+  .stat:nth-child(2n+1){border-left:0}
+  .stat .v{font-size:23px}
+  .mapcard .hd{padding:11px 12px}
+  .mapcard .hd .nm{font-size:15px}
+  .mapbox,#stage.dual .mapbox{height:430px}
+  .tl-wrap,#legend{padding:13px 12px}
+  .tl-head{gap:9px}
+  #playBtn{min-height:40px;padding:8px 12px}
+  #timeline{gap:3px}
+  .tl-year{min-width:35px;min-height:38px;padding:7px 2px;font-size:11px}
+  #legend{gap:20px}
+  .lg-items{gap:10px 12px}
+  .foot{gap:10px;padding-top:13px;font-size:11px}
+  .foot>div{max-width:none}
+  .foot .src{text-align:left}
+}
+@media (pointer:coarse){
+  .seg button,.btn,#playBtn,.tl-year{touch-action:manipulation}
+}
 </style>
 </head>
 <body>

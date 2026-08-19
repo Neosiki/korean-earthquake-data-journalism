@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="site.css?v=map-integration-1">
+  <link rel="stylesheet" href="site.css?v=automation-mobile-1">
 </head>
 <body>
   <div class="site-grain" aria-hidden="true"></div>
@@ -18,6 +18,8 @@
       <a href="#map">지도</a>
       <a href="#film">영상</a>
       <a href="#findings">핵심 결과</a>
+      <a href="#latest">최신</a>
+      <a href="article.html">기사</a>
       <a href="#graphics">인포그래픽</a>
       <a href="#method">방법론</a>
     </nav>
@@ -32,19 +34,19 @@
           <p class="hero-lede">한반도 지진 기록 1,769건을 시간·규모·좌표·깊이의 네 축으로 다시 살핀 데이터저널리즘 프로젝트입니다.</p>
           <div class="hero-actions">
             <a class="button button-primary" href="#map">지도 탐색 <span>↓</span></a>
-            <a class="button button-quiet" href="#film">영상 보기</a>
+            <a class="button button-quiet" href="article.html">상세 기사 읽기 →</a>
           </div>
         </div>
         <figure class="hero-map reveal">
           <img src="media/vertical_map_keyframe.png" alt="지진 관측점이 표시된 한반도 지형 지도 키비주얼">
-          <figcaption><span class="pulse-dot"></span> 1,769 RECORDS / KMA SOURCE</figcaption>
+          <figcaption><span class="pulse-dot"></span> <span id="latest-record-caption">1,769 RECORDS / KMA SOURCE</span></figcaption>
         </figure>
       </div>
       <dl class="headline-stats reveal" aria-label="핵심 지표">
-        <div><dt>기록 건수</dt><dd data-count="1769">1,769</dd><small>2005–2026</small></div>
-        <div><dt>최대 규모</dt><dd>M 5.8</dd><small>2016.09.12</small></div>
-        <div><dt>평균 규모</dt><dd>M 2.48</dd><small>전체 기록 기준</small></div>
-        <div><dt>평균 깊이</dt><dd>14.3 km</dd><small>깊이 유효값 기준</small></div>
+        <div><dt>기록 건수</dt><dd id="stat-record-count" data-count="1769">1,769</dd><small id="stat-period">2005–2026</small></div>
+        <div><dt>최대 규모</dt><dd id="stat-max-magnitude">M 5.8</dd><small id="stat-max-date">2016.09.12</small></div>
+        <div><dt>평균 규모</dt><dd id="stat-mean-magnitude">M 2.48</dd><small>전체 기록 기준</small></div>
+        <div><dt>평균 깊이</dt><dd id="stat-depth-mean">14.3 km</dd><small id="stat-depth-note">깊이 유효값 기준</small></div>
       </dl>
     </section>
 
@@ -125,6 +127,37 @@
           <p>깊이 값은 1,276건에만 있습니다. 필드별 결측은 분석의 한계이자 검증의 출발점입니다.</p>
         </article>
       </div>
+    </section>
+
+    <section id="latest" class="latest-section section-shell">
+      <div class="latest-heading reveal">
+        <div>
+          <p class="eyebrow">LATEST / AUTO-UPDATED</p>
+          <h2>새 기록이 더해지면,<br>요약도 다시 계산합니다.</h2>
+        </div>
+        <p class="latest-status"><span class="pulse-dot"></span> <span id="latest-status">마지막 기록 기준 2026.06.16</span></p>
+      </div>
+      <div class="latest-grid reveal">
+        <figure class="latest-graphic"><img id="latest-overview-image" src="media/latest_overview.svg" alt="최신 한반도 지진 데이터 요약 인포그래픽"><figcaption>공식 API 갱신 후 자동 재생성되는 핵심 지표</figcaption></figure>
+        <figure class="latest-graphic"><img id="latest-yearly-image" src="media/latest_yearly_trend.svg" alt="최신 지진 기록의 연도별 추이 인포그래픽"><figcaption>연도별 기록 추이와 최다 기록 연도</figcaption></figure>
+      </div>
+      <p class="latest-note">기상청 지진정보 OPEN-API의 최신 기록을 반영합니다. 원천의 발표·수정 시점에 따라 이전 집계와 달라질 수 있으며, 분석 기준과 방법은 저장소에 함께 공개합니다.</p>
+    </section>
+
+    <section id="story" class="story-section section-shell">
+      <article class="story-card reveal">
+        <div class="story-copy">
+          <p class="eyebrow">LONGFORM / DATA JOURNALISM</p>
+          <h2>1,769개의 기록,<br>한반도 지진을 읽는 방법</h2>
+          <p>작은 흔들림의 누적과 2016~2017년 기록의 집중, 육상·해역 분포, 그리고 결측 데이터까지. 숫자가 보여 주는 것과 말하지 않는 것을 상세 기사로 읽어봅니다.</p>
+          <dl class="story-meta">
+            <div><dt>분석 기준일</dt><dd>2026.06.16</dd></div>
+            <div><dt>읽는 시간</dt><dd>약 8분</dd></div>
+          </dl>
+          <a class="story-link" href="article.html">상세 기사 읽기 <span>→</span></a>
+        </div>
+        <figure class="story-visual"><img src="media/07_major_event_timeline.png" alt="한반도 규모 5.0 이상 지진 사건 타임라인 인포그래픽"></figure>
+      </article>
     </section>
 
     <section id="graphics" class="graphics section-shell">

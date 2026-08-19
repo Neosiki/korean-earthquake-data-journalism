@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="2005년부터 2026년까지 한반도 지진 기록을 분석한 데이터저널리즘 프로젝트입니다.">
+  <title>한반도 지진 데이터저널리즘 | 2005–2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site.css">
+</head>
+<body>
+  <div class="site-grain" aria-hidden="true"></div>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="한반도 지진 데이터저널리즘 처음으로">EQ / DATA</a>
+    <nav aria-label="주요 구역">
+      <a href="#film">영상</a>
+      <a href="#findings">핵심 결과</a>
+      <a href="#graphics">인포그래픽</a>
+      <a href="#method">방법론</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero section-shell">
+      <p class="eyebrow reveal">DATA JOURNALISM · KOREAN PENINSULA · 2005—2026</p>
+      <div class="hero-grid">
+        <div class="hero-copy reveal">
+          <h1>기록을 따라<br><em>지진을 읽다.</em></h1>
+          <p class="hero-lede">한반도 지진 기록 1,769건을 시간·규모·좌표·깊이의 네 축으로 다시 살핀 데이터저널리즘 프로젝트입니다.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#film">영상 보기 <span>↓</span></a>
+            <a class="button button-quiet" href="#findings">분석 결과 탐색</a>
+          </div>
+        </div>
+        <figure class="hero-map reveal">
+          <img src="media/vertical_map_keyframe.png" alt="지진 관측점이 표시된 한반도 지형 지도 키비주얼">
+          <figcaption><span class="pulse-dot"></span> 1,769 RECORDS / KMA SOURCE</figcaption>
+        </figure>
+      </div>
+      <dl class="headline-stats reveal" aria-label="핵심 지표">
+        <div><dt>기록 건수</dt><dd data-count="1769">1,769</dd><small>2005–2026</small></div>
+        <div><dt>최대 규모</dt><dd>M 5.8</dd><small>2016.09.12</small></div>
+        <div><dt>평균 규모</dt><dd>M 2.48</dd><small>전체 기록 기준</small></div>
+        <div><dt>평균 깊이</dt><dd>14.3 km</dd><small>깊이 유효값 기준</small></div>
+      </dl>
+    </section>
+
+    <section id="film" class="film-section section-shell">
+      <div class="section-heading reveal">
+        <p class="eyebrow">01 / WATCH</p>
+        <h2>44초로 압축한<br>데이터의 흐름.</h2>
+        <p>지도에서 관측점이 켜지고, 기록의 규모·빈도·공간 분포가 차례로 드러납니다.</p>
+      </div>
+      <div class="film-layout reveal">
+        <div class="film-frame">
+          <video controls preload="metadata" poster="media/vertical_map_keyframe.png" aria-label="한반도 지진 데이터저널리즘 세로형 영상">
+            <source src="media/korean_earthquake_data_journalism_vertical_extended.mp4" type="video/mp4">
+            브라우저가 HTML5 동영상을 지원하지 않습니다.
+          </video>
+        </div>
+        <aside class="film-notes">
+          <p class="note-index">EDITORIAL CUT / 00:44</p>
+          <ol>
+            <li><span>00–08</span>한반도 관측 지도</li>
+            <li><span>08–20</span>기록과 연도별 변화</li>
+            <li><span>20–32</span>규모와 권역 분포</li>
+            <li><span>32–44</span>고규모 기록과 맺음</li>
+          </ol>
+          <a href="media/korean_earthquake_data_journalism_vertical_extended.mp4" download>MP4 파일 내려받기</a>
+        </aside>
+      </div>
+    </section>
+
+    <section id="findings" class="findings section-shell">
+      <div class="section-heading reveal">
+        <p class="eyebrow">02 / KEY FINDINGS</p>
+        <h2>숫자는 패턴을<br>드러내는 시작점이다.</h2>
+      </div>
+      <div class="finding-grid">
+        <article class="finding-card finding-card-large reveal">
+          <span class="card-number">A</span>
+          <p class="card-kicker">FREQUENCY</p>
+          <h3>2016년<br><strong>252건</strong></h3>
+          <p>분석 기간 가운데 가장 많은 기록이 쌓인 해입니다. 연간 건수만이 아니라 그해의 사건 맥락까지 함께 읽어야 합니다.</p>
+          <img src="media/02_yearly_trend.png" alt="2016년 252건을 강조한 연도별 지진 기록 추이 그래프">
+        </article>
+        <article class="finding-card reveal">
+          <span class="card-number">B</span>
+          <p class="card-kicker">MAGNITUDE</p>
+          <h3>87.4%<br><strong>규모 2점대</strong></h3>
+          <p>1,546건이 규모 2.0–2.9 구간에 속합니다. 빈도와 영향도를 같은 값으로 취급하지 않는 이유입니다.</p>
+        </article>
+        <article class="finding-card reveal">
+          <span class="card-number">C</span>
+          <p class="card-kicker">LOCATION</p>
+          <h3>경북<br><strong>576건</strong></h3>
+          <p>원본 위치 텍스트의 첫 행정권역을 기준으로 단순 집계한 결과입니다. 해역·거리 표기는 별도 해석이 필요합니다.</p>
+        </article>
+        <article class="finding-card reveal">
+          <span class="card-number">D</span>
+          <p class="card-kicker">DEPTH</p>
+          <h3>72%<br><strong>깊이값 보유</strong></h3>
+          <p>깊이 값은 1,276건에만 있습니다. 필드별 결측은 분석의 한계이자 검증의 출발점입니다.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="graphics" class="graphics section-shell">
+      <div class="section-heading reveal">
+        <p class="eyebrow">03 / DATA GRAPHICS</p>
+        <h2>지진 기록을<br>서로 다른 관점으로.</h2>
+        <p>정확한 수치 전달이 필요한 그래프는 원자료를 재현 가능한 방식으로 집계해 제작했습니다.</p>
+      </div>
+      <div class="graphic-grid">
+        <figure class="graphic-item reveal graphic-tall"><img src="media/01_overview.png" alt="한반도 지진 데이터의 전체 기록 수와 주요 요약 지표"><figcaption><b>01</b><span>전체 개요</span></figcaption></figure>
+        <figure class="graphic-item reveal graphic-tall"><img src="media/03_magnitude_distribution.png" alt="지진 규모 구간별 기록 건수 분포"><figcaption><b>02</b><span>규모 분포</span></figcaption></figure>
+        <figure class="graphic-item reveal graphic-tall"><img src="media/04_regional_distribution.png" alt="원본 위치 텍스트 기준 권역별 지진 기록 분포"><figcaption><b>03</b><span>권역 분포</span></figcaption></figure>
+        <figure class="graphic-item reveal graphic-tall"><img src="media/05_key_events.png" alt="규모가 큰 지진 기록 상위 5개 표"><figcaption><b>04</b><span>고규모 기록</span></figcaption></figure>
+        <figure class="graphic-item reveal graphic-tall"><img src="media/06_data_coverage.png" alt="날짜 규모 좌표 깊이 최대진도 필드의 데이터 충족 현황"><figcaption><b>05</b><span>원자료 관측 범위</span></figcaption></figure>
+        <figure class="graphic-item reveal graphic-tall"><img src="media/07_major_event_timeline.png" alt="2005년부터 2026년까지 규모 5 이상 기록의 타임라인"><figcaption><b>06</b><span>고규모 사건 타임라인</span></figcaption></figure>
+        <figure class="graphic-item reveal graphic-wide"><img src="media/08_coordinate_scatter.png" alt="위도와 경도 좌표로 표시한 지진 기록 분포 산점도"><figcaption><b>07</b><span>좌표 기반 분포</span></figcaption></figure>
+      </div>
+    </section>
+
+    <section id="method" class="method-section section-shell">
+      <div class="method-copy reveal">
+        <p class="eyebrow">04 / METHOD &amp; CAUTION</p>
+        <h2>데이터가 말하지 않는<br>것까지 기록합니다.</h2>
+        <p>이 페이지의 집계는 저장소의 <code>KMA_지진_깊이진도_2005_2026.csv</code>를 기준으로 합니다. 발생일시·규모·위도·경도는 전 기록에 있으며, 깊이는 일부 기록에만 존재합니다. 최대진도 열에는 유효값이 없어 이번 분석 지표에서는 제외했습니다.</p>
+      </div>
+      <div class="method-list reveal">
+        <div><span>01</span><p><b>시간</b>발생일시를 연도 단위로 집계해 추이를 살폈습니다.</p></div>
+        <div><span>02</span><p><b>규모</b>원자료의 규모 필드를 구간별로 나눠 분포를 계산했습니다.</p></div>
+        <div><span>03</span><p><b>공간</b>위치 텍스트와 좌표를 구분해 각각의 장단점을 밝혔습니다.</p></div>
+        <div><span>04</span><p><b>결측</b>필드별 유효값 여부를 숨기지 않고 함께 제시했습니다.</p></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer section-shell">
+    <p>한반도 지진 데이터저널리즘</p>
+    <p>DATA SOURCE: KMA CSV / VISUAL ANALYSIS: MANUS AI</p>
+    <a href="https://github.com/Neosiki/korean-earthquake-data-journalism">GitHub 저장소 ↗</a>
+  </footer>
+  <script src="site.js"></script>
+</body>
+</html>

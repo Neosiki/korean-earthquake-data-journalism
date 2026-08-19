@@ -1,25 +1,25 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-16",
+  "generatedAt": "2026-08-16",
   "source": {
     "name": "기상청 지진정보 OPEN-API",
     "url": "https://apihub.kma.go.kr/apiList.do?seqApi=7",
     "note": "국내 지진정보의 발표 기준과 API 제공 범위는 원천기관 안내를 따른다."
   },
   "summary": {
-    "recordCount": 1769,
+    "recordCount": 1775,
     "periodStart": "2005-02-03",
-    "periodEnd": "2026-06-16",
+    "periodEnd": "2026-08-16",
     "meanMagnitude": 2.48,
     "medianMagnitude": 2.4,
     "maxMagnitude": 5.8,
     "maxMagnitudeDate": "2016-09-12",
     "maxMagnitudeLocation": "경북 경주시 남남서쪽 8.7km 지역",
     "depthValidCount": 1276,
-    "depthValidShare": 72.1,
+    "depthValidShare": 71.9,
     "depthMeanKm": 14.3,
     "seaCount": 739,
-    "seaShare": 41.8
+    "seaShare": 41.6
   },
   "yearlyCounts": [
     {
@@ -108,7 +108,7 @@
     },
     {
       "year": 2026,
-      "count": 33
+      "count": 39
     }
   ],
   "monthlyCounts": [
@@ -138,11 +138,11 @@
     },
     {
       "month": 7,
-      "count": 125
+      "count": 127
     },
     {
       "month": 8,
-      "count": 118
+      "count": 122
     },
     {
       "month": 9,
@@ -164,7 +164,7 @@
   "topRegions": [
     {
       "region": "경북",
-      "count": 576
+      "count": 578
     },
     {
       "region": "북한",
@@ -172,7 +172,7 @@
     },
     {
       "region": "전남",
-      "count": 171
+      "count": 175
     },
     {
       "region": "제주",
@@ -216,8 +216,8 @@
     }
   ],
   "latestEvent": {
-    "datetime": "2026-06-16 16:06:53",
+    "datetime": "2026-08-16 19:34:11",
     "magnitude": 2.4,
-    "location": "북한 평안남도 양덕 남남동쪽 16km 지역"
+    "location": "전남광주 해남군 서북서쪽 20km 지역"
   }
 }

@@ -8,13 +8,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="site.css">
+  <link rel="stylesheet" href="site.css?v=map-integration-1">
 </head>
 <body>
   <div class="site-grain" aria-hidden="true"></div>
   <header class="site-header">
     <a class="brand" href="#top" aria-label="한반도 지진 데이터저널리즘 처음으로">EQ / DATA</a>
     <nav aria-label="주요 구역">
+      <a href="#map">지도</a>
       <a href="#film">영상</a>
       <a href="#findings">핵심 결과</a>
       <a href="#graphics">인포그래픽</a>
@@ -30,8 +31,8 @@
           <h1>기록을 따라<br><em>지진을 읽다.</em></h1>
           <p class="hero-lede">한반도 지진 기록 1,769건을 시간·규모·좌표·깊이의 네 축으로 다시 살핀 데이터저널리즘 프로젝트입니다.</p>
           <div class="hero-actions">
-            <a class="button button-primary" href="#film">영상 보기 <span>↓</span></a>
-            <a class="button button-quiet" href="#findings">분석 결과 탐색</a>
+            <a class="button button-primary" href="#map">지도 탐색 <span>↓</span></a>
+            <a class="button button-quiet" href="#film">영상 보기</a>
           </div>
         </div>
         <figure class="hero-map reveal">
@@ -47,9 +48,28 @@
       </dl>
     </section>
 
+    <section id="map" class="map-section section-shell">
+      <div class="section-heading reveal">
+        <p class="eyebrow">01 / INTERACTIVE MAP</p>
+        <h2>점 하나마다<br>기록 하나.</h2>
+        <p>규모·연도·표시 방식·육상과 해역을 직접 바꾸며, 한반도 지진 기록의 공간적 패턴을 탐색할 수 있습니다.</p>
+      </div>
+      <div class="map-experience reveal">
+        <div class="map-toolbar">
+          <div>
+            <p class="map-label">INTERACTIVE EXPLORATION</p>
+            <p>필터, 연도 비교, 누적 재생 및 방송용 이미지 내보내기를 지원합니다.</p>
+          </div>
+          <a class="map-open" href="interactive-earthquake-map.html" target="_blank" rel="noopener">지도 새 창으로 열기 ↗</a>
+        </div>
+        <iframe class="map-embed" src="interactive-earthquake-map.html" title="2005년부터 2026년까지 한반도 지진 인터랙티브 지도" loading="lazy"></iframe>
+        <p class="map-notice">지도 원본의 내장 관측 레코드와 이 페이지의 KMA 집계는 수집·정제 시점이 달라 총계가 다를 수 있습니다. 화면 안의 범례와 필터 기준을 함께 확인해 주세요.</p>
+      </div>
+    </section>
+
     <section id="film" class="film-section section-shell">
       <div class="section-heading reveal">
-        <p class="eyebrow">01 / WATCH</p>
+        <p class="eyebrow">02 / WATCH</p>
         <h2>44초로 압축한<br>데이터의 흐름.</h2>
         <p>지도에서 관측점이 켜지고, 기록의 규모·빈도·공간 분포가 차례로 드러납니다.</p>
       </div>
@@ -75,7 +95,7 @@
 
     <section id="findings" class="findings section-shell">
       <div class="section-heading reveal">
-        <p class="eyebrow">02 / KEY FINDINGS</p>
+        <p class="eyebrow">03 / KEY FINDINGS</p>
         <h2>숫자는 패턴을<br>드러내는 시작점이다.</h2>
       </div>
       <div class="finding-grid">
@@ -109,7 +129,7 @@
 
     <section id="graphics" class="graphics section-shell">
       <div class="section-heading reveal">
-        <p class="eyebrow">03 / DATA GRAPHICS</p>
+        <p class="eyebrow">04 / DATA GRAPHICS</p>
         <h2>지진 기록을<br>서로 다른 관점으로.</h2>
         <p>정확한 수치 전달이 필요한 그래프는 원자료를 재현 가능한 방식으로 집계해 제작했습니다.</p>
       </div>
@@ -126,9 +146,9 @@
 
     <section id="method" class="method-section section-shell">
       <div class="method-copy reveal">
-        <p class="eyebrow">04 / METHOD &amp; CAUTION</p>
+        <p class="eyebrow">05 / METHOD &amp; CAUTION</p>
         <h2>데이터가 말하지 않는<br>것까지 기록합니다.</h2>
-        <p>이 페이지의 집계는 저장소의 <code>KMA_지진_깊이진도_2005_2026.csv</code>를 기준으로 합니다. 발생일시·규모·위도·경도는 전 기록에 있으며, 깊이는 일부 기록에만 존재합니다. 최대진도 열에는 유효값이 없어 이번 분석 지표에서는 제외했습니다.</p>
+        <p>이 페이지의 집계는 저장소의 <code>KMA_지진_깊이진도_2005_2026.csv</code>를 기준으로 합니다. 발생일시·규모·위도·경도는 전 기록에 있으며, 깊이는 일부 기록에만 존재합니다. 최대진도 열에는 유효값이 없어 이번 분석 지표에서는 제외했습니다. 인터랙티브 지도는 기존 고도화 파일의 내장 관측 레코드를 사용하므로 수집·정제 시점에 따라 총계가 다를 수 있습니다.</p>
       </div>
       <div class="method-list reveal">
         <div><span>01</span><p><b>시간</b>발생일시를 연도 단위로 집계해 추이를 살폈습니다.</p></div>

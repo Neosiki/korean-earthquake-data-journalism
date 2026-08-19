@@ -16,8 +16,10 @@ import math
 import os
 import re
 import sys
+import time
 import urllib.parse
 import urllib.request
+from urllib.error import HTTPError, URLError
 from collections import Counter
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -44,6 +46,12 @@ def parse_number(value: str | None) -> float | None:
 
 def parse_datetime(value: str) -> datetime | None:
     text = str(value).strip()
+    compact_match = re.match(r'^(\d{14})(?:\.\d+)?$', text)
+    if compact_match:
+        try:
+            return datetime.strptime(compact_match.group(1), '%Y%m%d%H%M%S')
+        except ValueError:
+            return None
     for fmt in ('%Y-%m-%d %H:%M:%S', '%Y%m%d%H%M%S', '%Y%m%d%H%M'):
         try:
             return datetime.strptime(text, fmt)
@@ -78,7 +86,7 @@ def read_existing() -> list[dict[str, str]]:
 
 def write_csv(rows: list[dict[str, str]]) -> None:
     buffer = io.StringIO(newline='')
-    writer = csv.DictWriter(buffer, fieldnames=FIELDS)
+    writer = csv.DictWriter(buffer, fieldnames=FIELDS, lineterminator='\n')
     writer.writeheader()
     for row in rows:
         writer.writerow({field: row.get(field, '') for field in FIELDS})
@@ -95,8 +103,25 @@ def request_recent_records(start: datetime, end: datetime, api_key: str) -> list
     })
     url = f'{API_URL}?{query}'
     request = urllib.request.Request(url, headers={'User-Agent': 'earthquake-data-journalism/1.0'})
-    with urllib.request.urlopen(request, timeout=60) as response:
-        raw = response.read()
+    raw = b''
+    last_error: Exception | None = None
+    for attempt in range(3):
+        try:
+            with urllib.request.urlopen(request, timeout=60) as response:
+                raw = response.read()
+            break
+        except HTTPError as error:
+            if error.code == 403:
+                body = error.read().decode('utf-8', errors='replace').strip()
+                raise RuntimeError(f'KMA API access was denied (HTTP 403): {body}') from error
+            last_error = error
+        except (URLError, OSError) as error:
+            last_error = error
+        if attempt < 2:
+            time.sleep(2 ** attempt)
+    else:
+        raise RuntimeError('KMA API request failed after three attempts.') from last_error
+
     text = raw.decode('utf-8', errors='replace')
     if text.count('�') > 10:
         text = raw.decode('euc-kr', errors='replace')
@@ -107,15 +132,17 @@ def request_recent_records(start: datetime, end: datetime, api_key: str) -> list
     new_records: list[dict[str, str]] = []
     for row in csv.reader(io.StringIO(text)):
         cells = [cell.strip() for cell in row]
-        if len(cells) < 9:
+        # The typ01 list schema is TP, TM_FC, SEQ, TM_EQK.MSC, MT, LAT, LON, LOC, INT, REM, COR.
+        # Keep only TP=3, the domestic-earthquake notices that match this project's Korea-focused baseline.
+        if len(cells) < 9 or cells[0] != '3':
             continue
         occurrence = parse_datetime(cells[3])
-        magnitude = parse_number(cells[5])
-        latitude = parse_number(cells[6])
-        longitude = parse_number(cells[7])
+        magnitude = parse_number(cells[4])
+        latitude = parse_number(cells[5])
+        longitude = parse_number(cells[6])
         if not occurrence or magnitude is None or latitude is None or longitude is None:
             continue
-        intensity = cells[9] if len(cells) > 9 else ''
+        intensity = cells[8] if len(cells) > 8 else ''
         new_records.append({
             '발생일시': occurrence.strftime('%Y-%m-%d %H:%M:%S'),
             '규모': f'{magnitude:.1f}',
@@ -123,7 +150,7 @@ def request_recent_records(start: datetime, end: datetime, api_key: str) -> list
             '최대진도': intensity,
             '위도': format_coordinate(latitude, 'N' if latitude >= 0 else 'S'),
             '경도': format_coordinate(longitude, 'E' if longitude >= 0 else 'W'),
-            '위치': cells[8],
+            '위치': cells[7],
         })
     return new_records
 
@@ -225,19 +252,19 @@ def overview_svg(summary: dict[str, Any]) -> str:
         x = 48 + index * 246
         sections.append(f'''<g transform="translate({x},236)">
           <rect width="214" height="142" rx="5" fill="#102a45" stroke="#29435a"/>
-          <text x="20" y="31" fill="#9fb2c3" font-size="17" font-family="sans-serif">{esc(label)}</text>
-          <text x="20" y="85" fill="#f2eee5" font-size="38" font-weight="700" font-family="sans-serif">{esc(value)}</text>
-          <text x="20" y="116" fill="#72e5ff" font-size="14" font-family="sans-serif">{esc(note)}</text>
+          <text x="20" y="31" fill="#9fb2c3" font-size="17" font-family="Noto Sans KR, Malgun Gothic, Apple SD Gothic Neo, sans-serif">{esc(label)}</text>
+          <text x="20" y="85" fill="#f2eee5" font-size="38" font-weight="700" font-family="Noto Sans KR, Malgun Gothic, Apple SD Gothic Neo, sans-serif">{esc(value)}</text>
+          <text x="20" y="116" fill="#72e5ff" font-size="14" font-family="Noto Sans KR, Malgun Gothic, Apple SD Gothic Neo, sans-serif">{esc(note)}</text>
         </g>''')
     return f'''<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="520" viewBox="0 0 1080 520" role="img" aria-labelledby="title desc">
       <title id="title">자동 갱신 한반도 지진 데이터 요약</title><desc id="desc">기록 수, 평균 규모, 최대 규모, 깊이 유효값을 요약한 인포그래픽</desc>
       <rect width="1080" height="520" fill="#071727"/>
-      <text x="48" y="72" fill="#72e5ff" font-size="19" font-weight="700" font-family="sans-serif">LATEST DATA / KMA API</text>
-      <text x="48" y="137" fill="#f2eee5" font-size="52" font-weight="700" font-family="sans-serif">한반도 지진 기록, 최신 요약</text>
-      <text x="48" y="179" fill="#aebdca" font-size="22" font-family="sans-serif">마지막 기록 기준일 {esc(data['periodEnd'])} · 자동 갱신 데이터</text>
+      <text x="48" y="72" fill="#72e5ff" font-size="19" font-weight="700" font-family="Noto Sans KR, Malgun Gothic, Apple SD Gothic Neo, sans-serif">LATEST DATA / KMA API</text>
+      <text x="48" y="137" fill="#f2eee5" font-size="52" font-weight="700" font-family="Noto Sans KR, Malgun Gothic, Apple SD Gothic Neo, sans-serif">한반도 지진 기록, 최신 요약</text>
+      <text x="48" y="179" fill="#aebdca" font-size="22" font-family="Noto Sans KR, Malgun Gothic, Apple SD Gothic Neo, sans-serif">마지막 기록 기준일 {esc(data['periodEnd'])} · 자동 갱신 데이터</text>
       <line x1="48" x2="1032" y1="206" y2="206" stroke="#29435a"/>
       {''.join(sections)}
-      <text x="48" y="474" fill="#8196a8" font-size="14" font-family="sans-serif">출처: 기상청 지진정보 OPEN-API · 재생성 시점은 최신 발생 기록일을 기준으로 표시</text>
+      <text x="48" y="474" fill="#8196a8" font-size="14" font-family="Noto Sans KR, Malgun Gothic, Apple SD Gothic Neo, sans-serif">출처: 기상청 지진정보 OPEN-API · 재생성 시점은 최신 발생 기록일을 기준으로 표시</text>
     </svg>'''
 
 
@@ -253,7 +280,7 @@ def yearly_svg(summary: dict[str, Any]) -> str:
         y = top + height - item['count'] / peak * height
         points.append(f'{x:.1f},{y:.1f}')
         if index == 0 or index == len(values) - 1 or item['year'] % 2 == 0:
-            labels.append(f'<text x="{x:.1f}" y="400" text-anchor="middle" fill="#9fb2c3" font-size="13" font-family="sans-serif">{item["year"]}</text>')
+            labels.append(f'<text x="{x:.1f}" y="400" text-anchor="middle" fill="#9fb2c3" font-size="13" font-family="Noto Sans KR, Malgun Gothic, Apple SD Gothic Neo, sans-serif">{item["year"]}</text>')
     peak_item = max(values, key=lambda item: item['count'])
     peak_index = values.index(peak_item)
     peak_x = left + peak_index * step
@@ -261,14 +288,14 @@ def yearly_svg(summary: dict[str, Any]) -> str:
     return f'''<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="460" viewBox="0 0 1080 460" role="img" aria-labelledby="title desc">
       <title id="title">연도별 지진 기록 추이</title><desc id="desc">자동 갱신 지진 데이터의 연도별 기록 건수 선 그래프</desc>
       <rect width="1080" height="460" fill="#0d2238"/>
-      <text x="48" y="66" fill="#72e5ff" font-size="18" font-weight="700" font-family="sans-serif">YEARLY TREND / AUTO-UPDATED</text>
-      <text x="48" y="109" fill="#f2eee5" font-size="36" font-weight="700" font-family="sans-serif">연도별 기록 수</text>
+      <text x="48" y="66" fill="#72e5ff" font-size="18" font-weight="700" font-family="Noto Sans KR, Malgun Gothic, Apple SD Gothic Neo, sans-serif">YEARLY TREND / AUTO-UPDATED</text>
+      <text x="48" y="109" fill="#f2eee5" font-size="36" font-weight="700" font-family="Noto Sans KR, Malgun Gothic, Apple SD Gothic Neo, sans-serif">연도별 기록 수</text>
       <line x1="{left}" x2="{left + width}" y1="{top + height}" y2="{top + height}" stroke="#496276"/>
       <polyline points="{' '.join(points)}" fill="none" stroke="#72e5ff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
       <circle cx="{peak_x:.1f}" cy="{peak_y:.1f}" r="8" fill="#ffbd69"/>
-      <text x="{peak_x:.1f}" y="{peak_y - 18:.1f}" text-anchor="middle" fill="#ffbd69" font-size="17" font-weight="700" font-family="sans-serif">{peak_item['year']}년 {peak_item['count']}건</text>
+      <text x="{peak_x:.1f}" y="{peak_y - 18:.1f}" text-anchor="middle" fill="#ffbd69" font-size="17" font-weight="700" font-family="Noto Sans KR, Malgun Gothic, Apple SD Gothic Neo, sans-serif">{peak_item['year']}년 {peak_item['count']}건</text>
       {''.join(labels)}
-      <text x="48" y="435" fill="#8196a8" font-size="14" font-family="sans-serif">출처: 기상청 지진정보 OPEN-API · 최신 기록을 반영해 자동 재생성</text>
+      <text x="48" y="435" fill="#8196a8" font-size="14" font-family="Noto Sans KR, Malgun Gothic, Apple SD Gothic Neo, sans-serif">출처: 기상청 지진정보 OPEN-API · 최신 기록을 반영해 자동 재생성</text>
     </svg>'''
 
 
@@ -290,7 +317,9 @@ def main() -> int:
         additions = [row for row in fetched if record_key(row) not in known]
         if additions:
             records.extend(additions)
-            records.sort(key=lambda row: parse_datetime(row['발생일시']) or datetime.min)
+            # Preserve the baseline order: years ascend, while records within each year descend by occurrence time.
+            records.sort(key=lambda row: parse_datetime(row['발생일시']) or datetime.min, reverse=True)
+            records.sort(key=lambda row: (parse_datetime(row['발생일시']) or datetime.min).year)
             write_csv(records)
             print(f'Added {len(additions)} new KMA API records.')
         else:

@@ -1,0 +1,44 @@
+name: Refresh KMA earthquake data
+
+on:
+  schedule:
+    # 00:15 UTC = 09:15 Asia/Seoul. GitHub scheduled workflows run on the default branch.
+    - cron: '15 0 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-earthquake-data
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    name: Refresh data and publish assets
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Retrieve KMA records and rebuild site assets
+        env:
+          KMA_API_KEY: ${{ secrets.KMA_API_KEY }}
+        run: python3 scripts/update_earthquake_data.py
+
+      - name: Commit changed data and graphics
+        run: |
+          if git diff --quiet; then
+            echo "No data or generated asset changes to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/kma_earthquakes_2005_2026_extracted.csv docs/site-data.json docs/media/latest_overview.svg docs/media/latest_yearly_trend.svg
+          git commit -m "chore(data): refresh KMA earthquake records"
+          git push

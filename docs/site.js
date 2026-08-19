@@ -62,6 +62,12 @@ async function applyLatestData() {
     if (depthNote) depthNote.textContent = `유효값 ${Number(summary.depthValidShare).toFixed(1)}% 기준`;
     const caption = byId('latest-record-caption');
     if (caption) caption.textContent = `${recordCount} RECORDS / KMA API`;
+    ['hero-record-count', 'story-record-count'].forEach((id) => {
+      const element = byId(id);
+      if (element) element.textContent = recordCount;
+    });
+    const storyDate = byId('story-analysis-date');
+    if (storyDate) storyDate.textContent = fmtDate(summary.periodEnd);
     const status = byId('latest-status');
     if (status) status.textContent = `마지막 기록 기준 ${fmtDate(summary.periodEnd)}`;
 

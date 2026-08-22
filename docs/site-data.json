@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-21",
+  "generatedAt": "2026-08-22",
   "source": {
     "name": "기상청 지진정보 OPEN-API",
     "url": "https://apihub.kma.go.kr/apiList.do?seqApi=7",
     "note": "국내 지진정보의 발표 기준과 API 제공 범위는 원천기관 안내를 따른다."
   },
   "summary": {
-    "recordCount": 1776,
+    "recordCount": 1777,
     "periodStart": "2005-02-03",
-    "periodEnd": "2026-08-21",
+    "periodEnd": "2026-08-22",
     "meanMagnitude": 2.48,
     "medianMagnitude": 2.4,
     "maxMagnitude": 5.8,
@@ -108,7 +108,7 @@
     },
     {
       "year": 2026,
-      "count": 40
+      "count": 41
     }
   ],
   "monthlyCounts": [
@@ -142,7 +142,7 @@
     },
     {
       "month": 8,
-      "count": 123
+      "count": 124
     },
     {
       "month": 9,
@@ -172,7 +172,7 @@
     },
     {
       "region": "전남",
-      "count": 176
+      "count": 177
     },
     {
       "region": "제주",
@@ -216,8 +216,8 @@
     }
   ],
   "latestEvent": {
-    "datetime": "2026-08-21 08:50:00",
-    "magnitude": 2.3,
-    "location": "전남광주 해남군 서북서쪽 21km 지역"
+    "datetime": "2026-08-22 04:21:29",
+    "magnitude": 2.7,
+    "location": "전남광주 해남군 서북서쪽 20km 지역"
   }
 }

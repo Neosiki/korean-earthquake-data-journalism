@@ -3,13 +3,13 @@
       <rect width="1080" height="520" fill="#071727"/>
       <text x="48" y="72" fill="#72e5ff" font-size="19" font-weight="700" font-family="Noto Sans KR, Malgun Gothic, Apple SD Gothic Neo, sans-serif">LATEST DATA / KMA API</text>
       <text x="48" y="137" fill="#f2eee5" font-size="52" font-weight="700" font-family="Noto Sans KR, Malgun Gothic, Apple SD Gothic Neo, sans-serif">한반도 지진 기록, 최신 요약</text>
-      <text x="48" y="179" fill="#aebdca" font-size="22" font-family="Noto Sans KR, Malgun Gothic, Apple SD Gothic Neo, sans-serif">마지막 기록 기준일 2026-08-21 · 자동 갱신 데이터</text>
+      <text x="48" y="179" fill="#aebdca" font-size="22" font-family="Noto Sans KR, Malgun Gothic, Apple SD Gothic Neo, sans-serif">마지막 기록 기준일 2026-08-22 · 자동 갱신 데이터</text>
       <line x1="48" x2="1032" y1="206" y2="206" stroke="#29435a"/>
       <g transform="translate(48,236)">
           <rect width="214" height="142" rx="5" fill="#102a45" stroke="#29435a"/>
           <text x="20" y="31" fill="#9fb2c3" font-size="17" font-family="Noto Sans KR, Malgun Gothic, Apple SD Gothic Neo, sans-serif">기록 건수</text>
-          <text x="20" y="85" fill="#f2eee5" font-size="38" font-weight="700" font-family="Noto Sans KR, Malgun Gothic, Apple SD Gothic Neo, sans-serif">1,776건</text>
-          <text x="20" y="116" fill="#72e5ff" font-size="14" font-family="Noto Sans KR, Malgun Gothic, Apple SD Gothic Neo, sans-serif">2005-02-03~2026-08-21</text>
+          <text x="20" y="85" fill="#f2eee5" font-size="38" font-weight="700" font-family="Noto Sans KR, Malgun Gothic, Apple SD Gothic Neo, sans-serif">1,777건</text>
+          <text x="20" y="116" fill="#72e5ff" font-size="14" font-family="Noto Sans KR, Malgun Gothic, Apple SD Gothic Neo, sans-serif">2005-02-03~2026-08-22</text>
         </g><g transform="translate(294,236)">
           <rect width="214" height="142" rx="5" fill="#102a45" stroke="#29435a"/>
           <text x="20" y="31" fill="#9fb2c3" font-size="17" font-family="Noto Sans KR, Malgun Gothic, Apple SD Gothic Neo, sans-serif">평균 규모</text>

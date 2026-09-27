@@ -1,22 +1,22 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-15",
+  "generatedAt": "2026-09-27",
   "source": {
     "name": "기상청 지진정보 OPEN-API",
     "url": "https://apihub.kma.go.kr/apiList.do?seqApi=7",
     "note": "국내 지진정보의 발표 기준과 API 제공 범위는 원천기관 안내를 따른다."
   },
   "summary": {
-    "recordCount": 1790,
+    "recordCount": 1791,
     "periodStart": "2005-02-03",
-    "periodEnd": "2026-09-15",
+    "periodEnd": "2026-09-27",
     "meanMagnitude": 2.48,
     "medianMagnitude": 2.4,
     "maxMagnitude": 5.8,
     "maxMagnitudeDate": "2016-09-12",
     "maxMagnitudeLocation": "경북 경주시 남남서쪽 8.7km 지역",
     "depthValidCount": 1276,
-    "depthValidShare": 71.3,
+    "depthValidShare": 71.2,
     "depthMeanKm": 14.3,
     "seaCount": 745,
     "seaShare": 41.6
@@ -108,7 +108,7 @@
     },
     {
       "year": 2026,
-      "count": 54
+      "count": 55
     }
   ],
   "monthlyCounts": [
@@ -146,7 +146,7 @@
     },
     {
       "month": 9,
-      "count": 254
+      "count": 255
     },
     {
       "month": 10,
@@ -180,7 +180,7 @@
     },
     {
       "region": "충남",
-      "count": 124
+      "count": 125
     }
   ],
   "majorEvents": [
@@ -216,8 +216,8 @@
     }
   ],
   "latestEvent": {
-    "datetime": "2026-09-15 21:22:49",
-    "magnitude": 2.9,
-    "location": "전남광주 신안군 흑산도 북북서쪽 121km 해역"
+    "datetime": "2026-09-27 11:28:44",
+    "magnitude": 2.6,
+    "location": "충남 부여군 남서쪽 9km 지역"
   }
 }

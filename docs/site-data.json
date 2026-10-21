@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-27",
+  "generatedAt": "2026-10-21",
   "source": {
     "name": "기상청 지진정보 OPEN-API",
     "url": "https://apihub.kma.go.kr/apiList.do?seqApi=7",
     "note": "국내 지진정보의 발표 기준과 API 제공 범위는 원천기관 안내를 따른다."
   },
   "summary": {
-    "recordCount": 1791,
+    "recordCount": 1792,
     "periodStart": "2005-02-03",
-    "periodEnd": "2026-09-27",
+    "periodEnd": "2026-10-21",
     "meanMagnitude": 2.48,
     "medianMagnitude": 2.4,
     "maxMagnitude": 5.8,
@@ -18,7 +18,7 @@
     "depthValidCount": 1276,
     "depthValidShare": 71.2,
     "depthMeanKm": 14.3,
-    "seaCount": 745,
+    "seaCount": 746,
     "seaShare": 41.6
   },
   "yearlyCounts": [
@@ -108,7 +108,7 @@
     },
     {
       "year": 2026,
-      "count": 55
+      "count": 56
     }
   ],
   "monthlyCounts": [
@@ -150,7 +150,7 @@
     },
     {
       "month": 10,
-      "count": 147
+      "count": 148
     },
     {
       "month": 11,
@@ -216,8 +216,8 @@
     }
   ],
   "latestEvent": {
-    "datetime": "2026-09-27 11:28:44",
+    "datetime": "2026-10-21 07:45:14",
     "magnitude": 2.6,
-    "location": "충남 부여군 남서쪽 9km 지역"
+    "location": "전북 군산시 어청도 남서쪽 85km 해역"
   }
 }

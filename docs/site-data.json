@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-17",
+  "generatedAt": "2026-11-18",
   "source": {
     "name": "기상청 지진정보 OPEN-API",
     "url": "https://apihub.kma.go.kr/apiList.do?seqApi=7",
     "note": "국내 지진정보의 발표 기준과 API 제공 범위는 원천기관 안내를 따른다."
   },
   "summary": {
-    "recordCount": 1794,
+    "recordCount": 1795,
     "periodStart": "2005-02-03",
-    "periodEnd": "2026-11-17",
+    "periodEnd": "2026-11-18",
     "meanMagnitude": 2.48,
     "medianMagnitude": 2.4,
     "maxMagnitude": 5.8,
@@ -108,7 +108,7 @@
     },
     {
       "year": 2026,
-      "count": 58
+      "count": 59
     }
   ],
   "monthlyCounts": [
@@ -154,7 +154,7 @@
     },
     {
       "month": 11,
-      "count": 203
+      "count": 204
     },
     {
       "month": 12,
@@ -168,7 +168,7 @@
     },
     {
       "region": "북한",
-      "count": 346
+      "count": 347
     },
     {
       "region": "전남",
@@ -216,8 +216,8 @@
     }
   ],
   "latestEvent": {
-    "datetime": "2026-11-17 23:10:17",
-    "magnitude": 3.6,
-    "location": "경북 상주시 북서쪽 22km 지역"
+    "datetime": "2026-11-18 20:28:23",
+    "magnitude": 2.5,
+    "location": "북한 함경북도 길주 북쪽 33km 지역"
   }
 }
